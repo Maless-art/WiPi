@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WIPI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Splash Screen -->
+<div id="splash">
+  <div class="splash-content">
+    <img src="WiPi_icon512.png" class="splash-icon" alt="WIPI">
+    <img src="WiPi_logo250.png" class="splash-logo" alt="WIPI logo">
+
+    <div class="loader">
+      <div class="loader-bar"></div>
+    </div>
+  </div>
+</div>
+
+
+<header class="app-header">
+  <div class="logo-row">
+    <img src="WiPi_logo250.png" alt="WIPI" class="app-logo">
+    <span class="version">v1.0</span>
+    <span class="aviso">Encuentra hoy, lo que viste ayer</span>
+  </div>
+
+  <input
+    type="text"
+    id="search"
+    placeholder="What are you looking for?"
+  >
+</header>
+
+<main id="list">
+  <!-- items go here -->
+</main>
+
+<button id="flashBtn">⚡</button>
+
+<!-- Flash Modal -->
+<div id="flashModal" class="modal hidden">
+  <div class="modal-content">
+   <h2 id="modalTitle">⚡ Flash Mode</h2>
+
+    <input
+      type="text"
+      id="flashItem"
+      placeholder="Acabo de ver mi..."
+    />
+
+    <input
+      type="text"
+      id="flashLocation"
+      placeholder="Aquí..."
+    />
+
+<select id="flashCategory">
+  <option value="Herramientas">Herramientas</option>
+  <option value="Cables">Cables</option>
+  <option value="it">IT</option>
+  <option value="Documentos">Documentos</option>
+  <option value="Trabajo">Trabajo</option>
+  <option value="Deportes">Deportes</option>
+  <option value="Video">Video</option>
+  <option value="Varios" selected>Varios</option>
+</select>
+
+
+    <div class="modal-actions">
+     <button id="saveBtn">Save ⚡</button>
+      <button id="cancelFlash">Cancel</button>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+<div id="toast" class="toast hidden">Saved ✓</div>
+</body>
+</html>

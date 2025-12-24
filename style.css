@@ -1,0 +1,345 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #F4F5F7;
+  color: #1F2933;
+}
+
+header {
+  padding: 16px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+header h1 {
+  margin: 0 0 8px 0;
+}
+
+header input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+main {
+  padding: 16px;
+}
+
+.item {
+  background: white;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+#flashBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #FF8A00;
+  color: white;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+
+  /* animación */
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* efecto al presionar */
+#flashBtn:active {
+  transform: scale(0.92);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 14px;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+}
+
+#saveBtn {
+  background: #FF8A00;
+  color: white;
+}
+
+#cancelFlash {
+  background: #E0E0E0;
+}
+.modal-content input {
+  width: 100%;
+  box-sizing: border-box;
+}
+.modal-actions button {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  cursor: pointer;
+}
+
+/* Hover */
+.modal-actions button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Click / Press */
+.modal-actions button:active {
+  transform: scale(0.96);
+  box-shadow: none;
+  opacity: 0.85;
+}
+.item{
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.item:active{
+  transform: scale(0.99);
+}
+
+.item.pressed{
+  transform: scale(0.985);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+.item.selected{
+  outline: 2px solid #FF8A00;
+  background: #fff7eb;
+}
+/* Select moderno (Category) */
+#flashCategory {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  background-color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+/* Flechita custom */
+#flashCategory {
+  background-image:
+    linear-gradient(45deg, transparent 50%, #666 50%),
+    linear-gradient(135deg, #666 50%, transparent 50%),
+    linear-gradient(to right, #ddd, #ddd);
+  background-position:
+    calc(100% - 20px) 55%,
+    calc(100% - 15px) 55%,
+    calc(100% - 45px) 50%;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 60%;
+  background-repeat: no-repeat;
+}
+
+#flashCategory:focus {
+  outline: none;
+  border-color: #ff9800;
+  box-shadow: 0 0 0 2px rgba(255,152,0,.2);
+}
+.modal.edit-mode .modal-content {
+  border: 2px solid #FF8A00;
+}
+.modal.edit-mode .modal-content {
+  background: #FFF8F2; /* naranja pastel suave */
+}
+
+/* Flash mode: mismo lenguaje, más suave */
+.modal.flash-mode .modal-content {
+  border: 2px solid #FFB15C;   /* naranja más claro */
+  background: #FFF8F2;        /* ultra pastel */
+}
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1f2933;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 2000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-6px);
+}
+
+.hidden {
+  display: none;
+}
+.app-header {
+  padding: 16px;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.app-logo {
+  height: 36px;
+  width: auto;
+}
+
+.version {
+  font-size: 12px;
+  color: #999;
+}
+/* ---------- SPLASH SCREEN ---------- */
+#splash {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.splash-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px; 
+}
+
+.splash-icon {
+  width: 110px;
+  margin-bottom: 0;
+}
+
+.splash-logo {
+  width: 150px;
+  margin-bottom: 0;
+  animation: pop 1.2s ease-in-out infinite alternate;
+transform: translateY(-4px);
+}
+
+/* Logo animation */
+@keyframes pop {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+/* Loader */
+.loader {
+  width: 200px;
+  height: 6px;
+  background: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: auto;
+}
+
+.loader-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff9800, #ffb74d);
+  animation: load 3s linear forwards;
+}
+
+@keyframes load {
+  to { width: 100%; }
+}
+.splash-content {
+  gap: 6px;
+}
+
+.splash-logo {
+  display: block;
+  margin: 0;
+}
+
+.loader {
+  margin-top: 4px;
+}
+.item-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-main {
+  flex: 1;
+}
+
+.delete-btn {
+  margin-left: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #f3f3f3;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.35;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: opacity 0.2s ease, transform 0.1s ease, background 0.2s ease;
+}
+
+.delete-btn:hover {
+  opacity: 1;
+  background: #ffe6e6;
+  transform: scale(1.05);
+}
