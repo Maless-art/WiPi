@@ -355,6 +355,10 @@ transform: translateY(-4px);
   opacity: 1;
   background: #ffe6e6;
   transform: scale(1.05);
+.delete-btn:active {
+  background: #f3f3f3;
+}
+
 }
 .toast {
   position: fixed;

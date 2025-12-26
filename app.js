@@ -29,7 +29,8 @@ const CATEGORIES = [
 
 let activeCategory = "Todas";
 
-    
+ let activeDeleteBtn = null;
+   
 let selectedItemId = null;
 
 // Estado en memoria (por ahora)
