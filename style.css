@@ -580,3 +580,26 @@ html, body {
   width: 100%;
 }
 
+/* Selector de categorías — limpio */
+.category-bar {
+  padding: 6px 16px 10px;
+  background: transparent;
+}
+
+.category-select {
+  width: auto;
+  min-width: 140px;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  background: #fff;
+  color: #555;
+  box-shadow: 0 2px 6px rgba(0,0,0,.04);
+}
+.search-wrap {
+  display: flex;
+  flex-direction: row;   /* ← ESTO ES LO CLAVE */
+  align-items: center;
+  gap: 8px;
+}
