@@ -531,4 +531,11 @@ body > * {
   background: rgba(255, 255, 255, 0.75);
 }
 
+.header-right {
+  max-width: 55%;
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.2;
+  text-align: right;
+}
 
