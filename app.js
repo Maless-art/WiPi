@@ -111,6 +111,10 @@ function closeModal() {
   locationInput.value = "";
 document.querySelectorAll(".item.selected")
   .forEach(el => el.classList.remove("selected"));
+document
+  .querySelectorAll(".delete-btn.active")
+  .forEach(btn => btn.classList.remove("active"));
+
 selectedItemId = null;
 }
 
