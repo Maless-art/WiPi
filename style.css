@@ -692,3 +692,6 @@ justify-content: flex-start;
 .delete-btn:active {
   animation: deletePress 0.18s ease;
 }
+.delete-btn.pressed {
+  transform: scale(0.85);
+}

@@ -230,6 +230,9 @@ listEl.addEventListener("click", (e) => {
   const deleteBtn = e.target.closest('.delete-btn');
 if (deleteBtn) {
   e.stopPropagation();
+deleteBtn.classList.add("pressed");
+setTimeout(() => deleteBtn.classList.remove("pressed"), 120);
+
 
   if (!confirm("¿Seguro que deseas eliminar este ítem?")) return;
 
