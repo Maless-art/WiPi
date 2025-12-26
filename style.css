@@ -683,3 +683,12 @@ justify-content: flex-start;
   transform: scale(0.9);
   opacity: 0.6;
 }
+@keyframes deletePress {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(0.85); }
+  100% { transform: scale(1); }
+}
+
+.delete-btn:active {
+  animation: deletePress 0.18s ease;
+}
