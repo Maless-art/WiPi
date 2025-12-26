@@ -674,3 +674,12 @@ justify-content: flex-start;
   transform: scale(0.98);
   box-shadow: 0 6px 14px rgba(0,0,0,.12);
 }
+.delete-btn {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+/* feedback al tocar */
+.delete-btn:active {
+  transform: scale(0.9);
+  opacity: 0.6;
+}
