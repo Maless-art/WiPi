@@ -350,15 +350,14 @@ transform: translateY(-4px);
 
   transition: opacity 0.2s ease, transform 0.1s ease, background 0.2s ease;
 }
-
-.delete-btn:hover {
-  opacity: 1;
-  background: #ffe6e6;
-  transform: scale(1.05);
-.delete-btn:active {
-  background: #f3f3f3;
+-webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
+/* SOLO mientras se presiona */
+.delete-btn:active {
+  background: #ffe6e6;
+  opacity: 1;
 }
 .toast {
   position: fixed;
