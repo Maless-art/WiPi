@@ -695,3 +695,14 @@ justify-content: flex-start;
 .delete-btn.pressed {
   transform: scale(0.85);
 }
+.section-title {
+  margin: 14px 16px 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  text-transform: uppercase;
+}
+.section-title {
+  text-align: center;
+}
