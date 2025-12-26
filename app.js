@@ -4,11 +4,17 @@ const cancelBtn = document.getElementById("cancelFlash");
 const saveBtn = document.getElementById("saveBtn");
 const itemInput = document.getElementById("flashItem");
 const locationInput = document.getElementById("flashLocation");
-const searchInput = document.getElementById("search");
-searchInput.addEventListener("input", renderList);
 const modalTitle = document.getElementById("modalTitle");
 const categoryInput = document.getElementById("flashCategory");
+const searchInput = document.getElementById("search");
+const categorySelect = document.getElementById("categorySelect");
 const listEl = document.getElementById("list");
+searchInput.addEventListener("input", renderList);
+
+categorySelect.addEventListener("change", () => {
+  activeCategory = categorySelect.value;
+  renderList();
+});
 const CATEGORIES = [
   "Todas",
   "Documentos",
