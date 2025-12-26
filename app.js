@@ -19,34 +19,11 @@ const CATEGORIES = [
   "Deportes",
   "Varios"
 ];
-const categoryBar = document.getElementById("categoryBar");
+
 
 let activeCategory = "Todas";
 
-function renderCategoryChips() {
-  categoryBar.innerHTML = "";
-
-  CATEGORIES.forEach(cat => {
-    const chip = document.createElement("div");
-    chip.className = "category-chip";
-    chip.textContent = cat;
-
-    if (cat === activeCategory) {
-      chip.classList.add("active");
-    }
-
-    chip.addEventListener("click", () => {
-      activeCategory = cat;
-      renderCategoryChips();
-      renderList();
-    });
-
-    categoryBar.appendChild(chip);
-  });
-}
-
-renderCategoryChips();
-
+    
 let selectedItemId = null;
 
 // Estado en memoria (por ahora)
