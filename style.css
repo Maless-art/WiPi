@@ -222,7 +222,20 @@ main {
   display: none;
 }
 .app-header {
-  padding: 16px;
+  display: flex;
+  align-items: center;        /* centro vertical REAL */
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-right {
+  white-space: nowrap;
 }
 
 .logo-row {
@@ -343,3 +356,179 @@ transform: translateY(-4px);
   background: #ffe6e6;
   transform: scale(1.05);
 }
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: #1f2937;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  opacity: 0;
+  transition: all .25s ease;
+  z-index: 10000;
+}
+
+.toast img {
+  width: 36px;
+  height: auto;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.hidden {
+  display: none;
+}
+
+.category-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 0;
+  margin-bottom: 10px;
+}
+
+.category-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.category-chip {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.category-chip.active {
+  background: #0b7a75;
+  color: #fff;
+  border-color: #0b7a75;
+}
+.item {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.item:hover {
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+.category-chip {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.category-chip:hover {
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  transform: translateY(-1px);
+}
+
+.category-chip.active {
+  background: #ff8a00;          /* naranja Wipi */
+  color: #fff;
+  border-color: #ff8a00;
+  box-shadow: 0 6px 16px rgba(255, 138, 0, 0.35);
+  transform: translateY(-1px);
+}
+/* 1) Activo en negrita */
+.category-chip.active {
+  font-weight: 700;
+}
+
+/* 2) Dar “aire” a la franja para que no corte la sombra */
+.category-bar {
+  padding-bottom: 12px;   /* más espacio inferior */
+  overflow: visible;      /* permite ver la sombra */
+}
+
+/* 3) (Opcional) Sombra un poco más contenida */
+.category-chip {
+  box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+}
+.header-top {
+  display: flex;
+  align-items: flex-end; /* alinea por la base */
+  gap: 8px;
+}
+
+.logo-row {
+  display: inline-flex;
+  align-items: flex-end; /* alinea por la base */
+  gap: 6px;
+}
+
+.app-version {
+  font-size: 12px;
+  opacity: 0.7;
+  line-height: 1;
+  margin-bottom: 4px; /* ajuste fino para calzar con la base de WiPi */
+}
+/* Ajuste fino de la frase */
+.tagline {
+  position: relative;
+  top: -10px;        /* sube la frase */
+  line-height: 1.2;
+}
+
+..tagline {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -6px; /* ajuste fino */
+}
+
+.app-version + * {
+  display: block;
+  margin-top: -10px;
+}
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-row .aviso {
+  font-size: 14px;
+  line-height: 1.2;
+}
+.search-container,
+#search {
+  width: 100%;
+  max-width: 100%;
+}
+/* Marca de agua con el LOGO */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("saved_relaxed.png") center / 40% no-repeat;
+  opacity: 0.15;              /* muy sutil */
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Asegura contenido encima */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Tarjetas con leve transparencia para dejar ver la marca */
+.item {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+

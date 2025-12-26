@@ -6,13 +6,46 @@ const itemInput = document.getElementById("flashItem");
 const locationInput = document.getElementById("flashLocation");
 const searchInput = document.getElementById("search");
 searchInput.addEventListener("input", renderList);
-
 const modalTitle = document.getElementById("modalTitle");
 const categoryInput = document.getElementById("flashCategory");
-
-
-
 const listEl = document.getElementById("list");
+const CATEGORIES = [
+  "Todas",
+  "Documentos",
+  "Trabajo",
+  "Tecnología",
+  "Herramientas",
+  "Cables",
+  "Deportes",
+  "Varios"
+];
+const categoryBar = document.getElementById("categoryBar");
+
+let activeCategory = "Todas";
+
+function renderCategoryChips() {
+  categoryBar.innerHTML = "";
+
+  CATEGORIES.forEach(cat => {
+    const chip = document.createElement("div");
+    chip.className = "category-chip";
+    chip.textContent = cat;
+
+    if (cat === activeCategory) {
+      chip.classList.add("active");
+    }
+
+    chip.addEventListener("click", () => {
+      activeCategory = cat;
+      renderCategoryChips();
+      renderList();
+    });
+
+    categoryBar.appendChild(chip);
+  });
+}
+
+renderCategoryChips();
 
 let selectedItemId = null;
 
@@ -110,54 +143,60 @@ function timeAgo(iso) {
 }
 
 function renderList() {
+
+  // 1️⃣ Vacío total
   if (items.length === 0) {
     listEl.innerHTML = `
-  <div class="item">
-    <strong>Aún no hay objetos.</strong>
-    <div style="opacity:.7; margin-top:6px;">
-      Toca ⚡ cuando encuentres algo que creías perdido.
-    </div>
-  </div>
-`;
-
+      <div class="item">
+        <strong>Aún no hay objetos.</strong>
+        <div style="opacity:.7; margin-top:6px;">
+          Toca ⚡ cuando encuentres algo que creías perdido.
+        </div>
+      </div>
+    `;
     return;
   }
 
-  // más nuevo arriba
   const query = searchInput.value.toLowerCase();
 
-const filtered = items.filter(it =>
-  it.name.toLowerCase().includes(query) ||
-  it.location.toLowerCase().includes(query)
-);
+  // 2️⃣ FILTRO COMBINADO (categoría + búsqueda)
+  const filtered = items.filter(it => {
+    const matchCategory =
+      activeCategory === "Todas" || it.category === activeCategory;
 
-const sorted = [...filtered].sort(
-  (a, b) => new Date(b.lastSeen) - new Date(a.lastSeen)
-);
+    const matchSearch =
+      it.name.toLowerCase().includes(query) ||
+      it.location.toLowerCase().includes(query);
 
+    return matchCategory && matchSearch;
+  });
+
+  // 3️⃣ Orden
+  const sorted = [...filtered].sort(
+    (a, b) => new Date(b.lastSeen) - new Date(a.lastSeen)
+  );
+
+  // 4️⃣ Render
   listEl.innerHTML = sorted.map(it => `
-  <div class="item" data-id="${it.id}">
-    
-    <div class="item-content">
-      <div class="item-main">
-        <div class="item-title">${escapeHtml(it.name)}</div>
+    <div class="item" data-id="${it.id}">
+      <div class="item-content">
+        <div class="item-main">
+          <div class="item-title">${escapeHtml(it.name)}</div>
 
-        <div class="item-location">
-          <span>Visto por última vez:</span>
-          <span>${escapeHtml(it.location)}</span>
+          <div class="item-location">
+            <span>Visto por última vez:</span>
+            <span>${escapeHtml(it.location)}</span>
+          </div>
+
+          <div class="item-meta">
+            ${timeAgo(it.lastSeen)} • ${it.category}
+          </div>
         </div>
 
-        <div class="item-meta">
-          ${timeAgo(it.lastSeen)} • ${it.category}
-        </div>
+        <button class="delete-btn" title="Delete">🗑️</button>
       </div>
-
-      <button class="delete-btn" title="Delete">🗑️</button>
     </div>
-
-  </div>
-`).join("");
-
+  `).join("");
 }
 
 function showToast(text = "Saved ✓") {
@@ -172,6 +211,23 @@ function showToast(text = "Saved ✓") {
   }, 1200);
 }
 
+function showToast(text) {
+  const toast = document.getElementById("toast");
+  const toastText = document.getElementById("toastText");
+
+  toastText.textContent = text;
+  toast.classList.remove("hidden");
+
+  requestAnimationFrame(() => {
+    toast.classList.add("show");
+  });
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.classList.add("hidden"), 250);
+  }, 1500);
+}
+
 function escapeHtml(str) {
   return String(str)
     .replaceAll("&", "&amp;")
@@ -183,19 +239,22 @@ function escapeHtml(str) {
 listEl.addEventListener("click", (e) => {
 
   // 🗑️ SI SE HIZO CLICK EN DELETE → NO ABRIR MODAL
-  const deleteBtn = e.target.closest(".delete-btn");
-  if (deleteBtn) {
-    e.stopPropagation();
+  const deleteBtn = e.target.closest('.delete-btn');
+if (deleteBtn) {
+  e.stopPropagation();
 
-    const itemEl = deleteBtn.closest(".item");
-    if (!itemEl) return;
+  if (!confirm("¿Seguro que deseas eliminar este ítem?")) return;
 
-    const id = itemEl.dataset.id;
-    items = items.filter(it => String(it.id) !== String(id));
-    localStorage.setItem("wipi_items", JSON.stringify(items));
-    renderList();
-    return;
-  }
+  const itemEl = deleteBtn.closest('.item');
+  if (!itemEl) return;
+
+  const id = itemEl.dataset.id;
+  items = items.filter(it => String(it.id) !== String(id));
+  localStorage.setItem("wipi_items", JSON.stringify(items));
+  renderList();
+  return;
+}
+
 
   // ✏️ CLICK NORMAL EN ITEM → EDITAR
   const itemEl = e.target.closest(".item");
@@ -248,7 +307,7 @@ if (selectedItemId) {
 
   localStorage.setItem("wipi_items", JSON.stringify(items));
 renderList();
-showToast("Updated ✓");
+showToast("Actualizado ✓");
 closeModal();
 return;
 }
@@ -266,7 +325,7 @@ return;
   items.push(newItem);
   localStorage.setItem("wipi_items", JSON.stringify(items));
 renderList();
-showToast("Saved ✓");
+showToast("Guardado ✓");
 closeModal();
 });
 

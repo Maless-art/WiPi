@@ -25,11 +25,16 @@
 
 
 <header class="app-header">
-  <div class="logo-row">
+  <div class="header-left">
     <img src="WiPi_logo250.png" alt="WIPI" class="app-logo">
-    <span class="version">v1.0</span>
-    <span class="aviso">Encuentra hoy, lo que viste ayer</span>
+    <span class="version">v1.1</span>
   </div>
+
+  <div class="header-right">
+    Encuentra hoy, lo que viste ayer
+  </div>
+</header>
+
 
   <input
     type="text"
@@ -37,6 +42,9 @@
     placeholder="What are you looking for?"
   >
 </header>
+</header>
+
+<div id="categoryBar" class="category-bar"></div>
 
 <main id="list">
   <!-- items go here -->
@@ -64,11 +72,10 @@
 <select id="flashCategory">
   <option value="Herramientas">Herramientas</option>
   <option value="Cables">Cables</option>
-  <option value="it">IT</option>
+  <option value="Tecnología">Tecnología</option>
   <option value="Documentos">Documentos</option>
   <option value="Trabajo">Trabajo</option>
   <option value="Deportes">Deportes</option>
-  <option value="Video">Video</option>
   <option value="Varios" selected>Varios</option>
 </select>
 
