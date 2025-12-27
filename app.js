@@ -10,6 +10,18 @@ const searchInput = document.getElementById("search");
 const categorySelect = document.getElementById("categorySelect");
 const listEl = document.getElementById("list");
 searchInput.addEventListener("input", renderList);
+const APP_VERSION = "1.1.2";
+
+const lastSeenVersion = localStorage.getItem("wipi_last_version");
+
+if (lastSeenVersion !== APP_VERSION) {
+  document.getElementById("updateModal").classList.remove("hidden");
+}
+
+document.getElementById("closeUpdate").addEventListener("click", () => {
+  localStorage.setItem("wipi_last_version", APP_VERSION);
+  document.getElementById("updateModal").classList.add("hidden");
+});
 
 categorySelect.addEventListener("change", () => {
   activeCategory = categorySelect.value;
@@ -17,13 +29,14 @@ categorySelect.addEventListener("change", () => {
 });
 const CATEGORIES = [
   "Todas",
-  "Documentos",
-  "Trabajo",
-  "Tecnología",
-  "Herramientas",
   "Cables",
   "Deportes",
-  "Varios"
+  "Documentos",
+  "Herramientas",
+  "Hogar",
+  "Tecnología",
+  "Trabajo",
+  "Varios",
 ];
 
 
@@ -149,17 +162,26 @@ function renderList() {
 
   // 2️⃣ FILTRO COMBINADO (categoría + búsqueda)
   const filtered = items.filter(it => {
-    const matchCategory =
-      activeCategory === "Todas" || it.category === activeCategory;
+  const matchSearch =
+    it.name.toLowerCase().includes(query) ||
+    it.location.toLowerCase().includes(query);
+const matchCategory =
+  activeCategory === "Todas" || it.category === activeCategory;
 
-    const matchSearch =
-      it.name.toLowerCase().includes(query) ||
-      it.location.toLowerCase().includes(query);
+  return matchCategory && matchSearch;
+});
 
-    return matchCategory && matchSearch;
-document.querySelector(".section-title").textContent = `WIPIADOS · ${filtered.length}`;
+const categoryCountEl = document.getElementById("categoryCount");
 
-  });
+if (activeCategory === "Todas") {
+  categoryCountEl.textContent = "";
+} else {
+  categoryCountEl.textContent = `${activeCategory} · ${filtered.length}`;
+}
+
+document.querySelector(".section-title").textContent =
+  `WIPIADOS · ${items.length}`;
+
 if (filtered.length === 0) {
   listEl.innerHTML = `
     <div class="item empty">
@@ -171,6 +193,7 @@ if (filtered.length === 0) {
   `;
   return;
 }
+
 
   // 3️⃣ Orden
   const sorted = [...filtered].sort(
@@ -338,6 +361,6 @@ renderList();
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("splash").style.display = "none";
-  }, 5000);
+  }, 3000);
 });
 

@@ -17,12 +17,9 @@
     <img src="WiPi_icon512.png" class="splash-icon" alt="WIPI">
     <img src="WiPi_logo250.png" class="splash-logo" alt="WIPI logo">
 
-   <div class="loader">
-  <div class="loader-bar"></div>
-</div>
-
-<span id="wipiLoaderText" class="splash-text"></span>
-
+    <div class="loader">
+      <div class="loader-bar"></div>
+    </div>
   </div>
 </div>
 
@@ -30,7 +27,7 @@
 <header class="app-header">
   <div class="header-left">
     <img src="WiPi_logo250.png" alt="WIPI" class="app-logo">
-    <span class="version">v1.1.1</span>
+    <span class="version">v1.1.2</span>
   </div>
 
   <div class="header-right">
@@ -38,6 +35,7 @@
   </div>
 </header>
 
+<main class="app-content">
 
 <!-- BUSCADOR (ARRIBA) -->
 <input
@@ -45,25 +43,26 @@
   id="search"
   placeholder="¿Qué estás buscando?"
 >
+<div class="category-title">Categorías</div>
 
-<!-- CATEGORÍAS (ABAJO) -->
 <div class="category-bar">
   <select id="categorySelect" class="category-select">
     <option value="Todas">Todas</option>
-    <option value="Documentos">Documentos</option>
-    <option value="Trabajo">Trabajo</option>
-    <option value="Tecnología">Tecnología</option>
-    <option value="Herramientas">Herramientas</option>
     <option value="Cables">Cables</option>
     <option value="Deportes">Deportes</option>
+    <option value="Documentos">Documentos</option>
+    <option value="Herramientas">Herramientas</option>
+    <option value="Hogar">Hogar</option>
+    <option value="Trabajo">Trabajo</option>
+    <option value="Tecnología">Tecnología</option>     
     <option value="Varios">Varios</option>
   </select>
-</div>
 
-<div class="section-title">
-  WIPIADOS <span id="wipiCount">(0)</span>
-</div>
 
+</div>
+<div class="section-title">WIPIADOS</div>
+<div class="category-count" id="categoryCount"></div>
+</main>
 
 
 <main id="list">
@@ -90,13 +89,14 @@
     />
 
 <select id="flashCategory">
-  <option value="Herramientas">Herramientas</option>
-  <option value="Cables">Cables</option>
-  <option value="Tecnología">Tecnología</option>
-  <option value="Documentos">Documentos</option>
-  <option value="Trabajo">Trabajo</option>
-  <option value="Deportes">Deportes</option>
-  <option value="Varios" selected>Varios</option>
+ <option value="Cables">Cables</option>
+ <option value="Deportes">Deportes</option>
+ <option value="Documentos">Documentos</option>
+ <option value="Herramientas">Herramientas</option>
+ <option value="Hogar">Hogar</option>
+ <option value="Tecnología">Tecnología</option>
+ <option value="Trabajo">Trabajo</option>
+ <option value="Varios" selected>Varios</option>
 </select>
 
 
@@ -107,123 +107,24 @@
   </div>
 </div>
 
+<div id="toast" class="toast hidden">Saved ✓</div>
 <div id="toast" class="toast hidden">
-  <img src="./saved_relaxed.png" alt="Saved">
+ <img src="./saved_relaxed.png" alt="Saved">
+
   <span id="toastText">Guardado ✓</span>
 </div>
-
+<div id="updateModal" class="update-modal hidden">
+  <div class="update-box">
+    <h3>✨ Novedades de la actualización</h3>
+    <ul>
+      <li>✔️ Mejoras de experiencia de usuario</li>
+      <li>✔️ Categorías ahora tienen encabezado</li>
+      <li>✔️ Contador general y por categoría</li>
+      <li>✔️ Nueva categoría: Hogar</li>
+    </ul>
+    <button id="closeUpdate">Entendido</button>
+  </div>
+</div>
 <script src="app.js"></script>
-
-<script>
-  function actualizarContadorWipi() {
-    const items = JSON.parse(localStorage.getItem("wipi_items")) || [];
-    const counter = document.getElementById("wipiCount");
-    if (counter) {
-      counter.textContent = `(${items.length})`;
-    }
-  }
-
-  // Ejecutar al cargar la página
-  actualizarContadorWipi();
-</script>
-<script>
-<script>
-  window.addEventListener("load", () => {
-    const textEl = document.getElementById("wipiLoaderText");
-
-    const mensajes = [
-      "ordenando tu desorden, vaya… es mucho.",
-      "alineando ideas sueltas… aguanta.",
-      "clasificando caos productivo."
-    ];
-
-    let i = 0;
-
-    if (textEl) {
-      textEl.textContent = mensajes[i];
-
-      const interval = setInterval(() => {
-  i++;
-  if (i < mensajes.length) {
-    textEl.textContent = mensajes[i];
-  } else {
-    clearInterval(interval);
-  }
-}, 1500);
-
-
-    const splash = document.getElementById("splash");
-    if (splash) {
-      setTimeout(() => splash.classList.add("hidden"), 2200);
-    }
-  });
-</script>
-<script>
-  <script>
-  window.addEventListener("load", () => {
-    const textEl = document.getElementById("wipiLoaderText");
-    const splash = document.getElementById("splash");
-
-    if (!textEl || !splash) return;
-
-    const mensajes = [
-      "ordenando tu desorden, vaya… es mucho.",
-      "alineando ideas sueltas… aguanta.",
-      "clasificando caos productivo."
-    ];
-
-    let index = 0;
-    const delay = 1800; // tiempo REAL de lectura por frase
-
-    function mostrarMensaje() {
-      textEl.textContent = mensajes[index];
-
-      if (index < mensajes.length - 1) {
-        index++;
-        setTimeout(mostrarMensaje, delay);
-      } else {
-        // última frase se queda un poco más
-        setTimeout(() => {
-          splash.classList.add("hidden");
-        }, delay + 600);
-      }
-    }
-
-    mostrarMensaje();
-  });
-</script>
-<script>
-  window.addEventListener("load", () => {
-    const textEl = document.getElementById("wipiLoaderText");
-    const splash = document.getElementById("splash");
-
-    if (!textEl || !splash) return;
-
-    const mensajes = [
-      "Ordenando tu desorden, vaya… es mucho.",
-      "Alineando ideas sueltas… aguanta.",
-      "Clasificando caos productivo."
-    ];
-
-    let index = 0;
-    const delay = 1800; // tiempo REAL de lectura por frase
-
-    function mostrarMensaje() {
-      textEl.textContent = mensajes[index];
-
-      if (index < mensajes.length - 1) {
-        index++;
-        setTimeout(mostrarMensaje, delay);
-      } else {
-        // última frase se queda un poco más
-        setTimeout(() => {
-          splash.classList.add("hidden");
-        }, delay + 600);
-      }
-    }
-
-    mostrarMensaje();
-  });
-</script>
 </body>
 </html>
