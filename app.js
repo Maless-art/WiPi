@@ -157,7 +157,20 @@ function renderList() {
       it.location.toLowerCase().includes(query);
 
     return matchCategory && matchSearch;
+document.querySelector(".section-title").textContent = `WIPIADOS · ${filtered.length}`;
+
   });
+if (filtered.length === 0) {
+  listEl.innerHTML = `
+    <div class="item empty">
+      <strong>No hay wipiados aquí</strong>
+      <div style="opacity:.6; margin-top:6px;">
+        Prueba otra categoría 👀
+      </div>
+    </div>
+  `;
+  return;
+}
 
   // 3️⃣ Orden
   const sorted = [...filtered].sort(
@@ -325,6 +338,6 @@ renderList();
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("splash").style.display = "none";
-  }, 3000);
+  }, 5000);
 });
 

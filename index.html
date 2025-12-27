@@ -17,9 +17,12 @@
     <img src="WiPi_icon512.png" class="splash-icon" alt="WIPI">
     <img src="WiPi_logo250.png" class="splash-logo" alt="WIPI logo">
 
-    <div class="loader">
-      <div class="loader-bar"></div>
-    </div>
+   <div class="loader">
+  <div class="loader-bar"></div>
+</div>
+
+<span id="wipiLoaderText" class="splash-text"></span>
+
   </div>
 </div>
 
@@ -27,7 +30,7 @@
 <header class="app-header">
   <div class="header-left">
     <img src="WiPi_logo250.png" alt="WIPI" class="app-logo">
-    <span class="version">v1.1</span>
+    <span class="version">v1.1.1</span>
   </div>
 
   <div class="header-right">
@@ -57,7 +60,10 @@
   </select>
 </div>
 
-<div class="section-title">WIPIADOS</div>
+<div class="section-title">
+  WIPIADOS <span id="wipiCount">(0)</span>
+</div>
+
 
 
 <main id="list">
@@ -100,13 +106,124 @@
     </div>
   </div>
 </div>
-<script src="app.js"></script>
-<div id="toast" class="toast hidden">Saved ✓</div>
-<div id="toast" class="toast hidden">
- <img src="./saved_relaxed.png" alt="Saved">
 
+<div id="toast" class="toast hidden">
+  <img src="./saved_relaxed.png" alt="Saved">
   <span id="toastText">Guardado ✓</span>
 </div>
 
+<script src="app.js"></script>
+
+<script>
+  function actualizarContadorWipi() {
+    const items = JSON.parse(localStorage.getItem("wipi_items")) || [];
+    const counter = document.getElementById("wipiCount");
+    if (counter) {
+      counter.textContent = `(${items.length})`;
+    }
+  }
+
+  // Ejecutar al cargar la página
+  actualizarContadorWipi();
+</script>
+<script>
+<script>
+  window.addEventListener("load", () => {
+    const textEl = document.getElementById("wipiLoaderText");
+
+    const mensajes = [
+      "ordenando tu desorden, vaya… es mucho.",
+      "alineando ideas sueltas… aguanta.",
+      "clasificando caos productivo."
+    ];
+
+    let i = 0;
+
+    if (textEl) {
+      textEl.textContent = mensajes[i];
+
+      const interval = setInterval(() => {
+  i++;
+  if (i < mensajes.length) {
+    textEl.textContent = mensajes[i];
+  } else {
+    clearInterval(interval);
+  }
+}, 1500);
+
+
+    const splash = document.getElementById("splash");
+    if (splash) {
+      setTimeout(() => splash.classList.add("hidden"), 2200);
+    }
+  });
+</script>
+<script>
+  <script>
+  window.addEventListener("load", () => {
+    const textEl = document.getElementById("wipiLoaderText");
+    const splash = document.getElementById("splash");
+
+    if (!textEl || !splash) return;
+
+    const mensajes = [
+      "ordenando tu desorden, vaya… es mucho.",
+      "alineando ideas sueltas… aguanta.",
+      "clasificando caos productivo."
+    ];
+
+    let index = 0;
+    const delay = 1800; // tiempo REAL de lectura por frase
+
+    function mostrarMensaje() {
+      textEl.textContent = mensajes[index];
+
+      if (index < mensajes.length - 1) {
+        index++;
+        setTimeout(mostrarMensaje, delay);
+      } else {
+        // última frase se queda un poco más
+        setTimeout(() => {
+          splash.classList.add("hidden");
+        }, delay + 600);
+      }
+    }
+
+    mostrarMensaje();
+  });
+</script>
+<script>
+  window.addEventListener("load", () => {
+    const textEl = document.getElementById("wipiLoaderText");
+    const splash = document.getElementById("splash");
+
+    if (!textEl || !splash) return;
+
+    const mensajes = [
+      "Ordenando tu desorden, vaya… es mucho.",
+      "Alineando ideas sueltas… aguanta.",
+      "Clasificando caos productivo."
+    ];
+
+    let index = 0;
+    const delay = 1800; // tiempo REAL de lectura por frase
+
+    function mostrarMensaje() {
+      textEl.textContent = mensajes[index];
+
+      if (index < mensajes.length - 1) {
+        index++;
+        setTimeout(mostrarMensaje, delay);
+      } else {
+        // última frase se queda un poco más
+        setTimeout(() => {
+          splash.classList.add("hidden");
+        }, delay + 600);
+      }
+    }
+
+    mostrarMensaje();
+  });
+</script>
 </body>
 </html>

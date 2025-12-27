@@ -305,7 +305,7 @@ transform: translateY(-4px);
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, #ff9800, #ffb74d);
-  animation: load 3s linear forwards;
+  animation: load 6s linear forwards;
 }
 
 @keyframes load {
@@ -720,4 +720,10 @@ justify-content: flex-start;
   border-top: 1px solid #cfcfcf;
   border-bottom: 1px solid #cfcfcf;
 }
-
+.splash-text {
+  margin-top: 14px;
+  display: block;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  text-align: center;
+}
