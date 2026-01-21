@@ -10,7 +10,7 @@ const searchInput = document.getElementById("search");
 const categorySelect = document.getElementById("categorySelect");
 const listEl = document.getElementById("list");
 searchInput.addEventListener("input", renderList);
-const APP_VERSION = "1.1.2";
+const APP_VERSION = "1.1.3";
 
 const lastSeenVersion = localStorage.getItem("wipi_last_version");
 
@@ -29,6 +29,7 @@ categorySelect.addEventListener("change", () => {
 });
 const CATEGORIES = [
   "Todas",
+  "Auto",
   "Cables",
   "Deportes",
   "Documentos",
@@ -364,3 +365,19 @@ window.addEventListener("load", () => {
   }, 3000);
 });
 
+// Splash messages rotativos
+const splashMessages = [
+  'Cargando tus notas…',
+  'Ordenando tu memoria…',
+  'Casi listo ✨'
+];
+
+let splashIndex = 0;
+const splashText = document.getElementById('splashText');
+
+if (splashText) {
+  setInterval(() => {
+    splashIndex = (splashIndex + 1) % splashMessages.length;
+    splashText.textContent = splashMessages[splashIndex];
+  }, 1200);
+}

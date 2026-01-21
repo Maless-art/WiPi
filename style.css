@@ -350,9 +350,6 @@ transform: translateY(-4px);
 
   transition: opacity 0.2s ease, transform 0.1s ease, background 0.2s ease;
 }
--webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
 
 /* SOLO mientras se presiona */
 .delete-btn:active {
@@ -397,13 +394,6 @@ transform: translateY(-4px);
   box-sizing: border-box;
 
   display: flex;        /* ← ESTA es la clave real */
-}
-
-/* Selector de categorías con presencia */
-.category-select {
-  display: block;            /* ← CLAVE */
-  .category-select {
-  flex: 0 0 50%;   /* ← ESTA es la orden que el select sí obedece */
 }
 
 
@@ -506,11 +496,6 @@ transform: translateY(-4px);
   line-height: 1.2;
 }
 
-..tagline {
-  display: inline-block;
-  vertical-align: middle;
-  margin-top: -6px; /* ajuste fino */
-}
 
 .app-version + * {
   display: block;
@@ -789,3 +774,63 @@ justify-content: flex-start;
   font-weight: 600;
 }
 
+/* FIX Splash: texto siempre legible por encima del watermark */
+#splash {
+  z-index: 999999 !important;
+}
+
+#splash .splash-content,
+#splash p,
+#splash .msg,
+#splash .status,
+#splash small {
+  color: #111 !important;
+  opacity: 1 !important;
+}
+
+/* ===== FIX LIMPIO Splash + interacción ===== */
+
+/* Splash siempre encima del watermark */
+#splash {
+  z-index: 999999;
+}
+
+/* Texto del splash siempre legible */
+#splash .splash-content,
+#splash p,
+#splash small,
+#splash .status,
+#splash .msg {
+  color: #111;
+  opacity: 1;
+}
+
+/* Tap highlight correcto */
+.item,
+.delete-btn,
+button,
+select,
+input {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* category-select correcto */
+.category-select {
+  display: block;
+  flex: 0 0 50%;
+}
+
+/* tagline correcto */
+.tagline {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -6px;
+}
+#splashText {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #374151;   /* gris oscuro visible */
+  text-align: center;
+  opacity: 1;
+}

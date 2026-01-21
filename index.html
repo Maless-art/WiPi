@@ -20,6 +20,7 @@
     <div class="loader">
       <div class="loader-bar"></div>
     </div>
+<p id="splashText">Cargando tus notas…</p>
   </div>
 </div>
 
@@ -27,7 +28,7 @@
 <header class="app-header">
   <div class="header-left">
     <img src="WiPi_logo250.png" alt="WIPI" class="app-logo">
-    <span class="version">v1.1.2</span>
+    <span class="version">v1.1.3</span>
   </div>
 
   <div class="header-right">
@@ -48,6 +49,7 @@
 <div class="category-bar">
   <select id="categorySelect" class="category-select">
     <option value="Todas">Todas</option>
+    <option value="Auto">Auto</option>
     <option value="Cables">Cables</option>
     <option value="Deportes">Deportes</option>
     <option value="Documentos">Documentos</option>
@@ -89,6 +91,7 @@
     />
 
 <select id="flashCategory">
+ <option value="Auto">Auto</option>
  <option value="Cables">Cables</option>
  <option value="Deportes">Deportes</option>
  <option value="Documentos">Documentos</option>
@@ -115,13 +118,11 @@
 </div>
 <div id="updateModal" class="update-modal hidden">
   <div class="update-box">
-    <h3>✨ Novedades de la versión 1.1.2</h3>
+    <h3>✨ Novedades de la versión 1.1.3</h3>
     <ul>
-      <li>✔️ Mejoras de experiencia de usuario</li>
-      <li>✔️ Categorías ahora tienen encabezado</li>
-      <li>✔️ Contador general y por categoría</li>
-      <li>✔️ Nueva categoría: Hogar</li>
-    </ul>
+      <li>✔️ Corrección de error en pantalla de carga</li>
+      <li>✔️ Nueva categoría: "Auto"</li>
+     </ul>
     <button id="closeUpdate">Entendido</button>
   </div>
 </div>
